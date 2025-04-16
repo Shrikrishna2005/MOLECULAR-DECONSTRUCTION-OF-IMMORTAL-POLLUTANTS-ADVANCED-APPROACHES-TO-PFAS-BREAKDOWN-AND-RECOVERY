@@ -1,0 +1,126 @@
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<base href='/static/purecheck/pc_reg/'>
+<title>Purecheck Registration</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Auditions Registration Form Widget Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<!-- //custom-theme -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<!-- font-awesome-icons -->
+<!-- //font-awesome-icons -->
+<link href="//fonts.googleapis.com/css?family=Anton&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+</head>
+<body>
+	<script>
+        {% for message in messages %}
+            alert('{{ message }}');
+        {% endfor %}
+    </script>
+<!-- banner -->
+	<div class="center-container">
+	<div class="banner-dott">
+		<div class="main">
+			<h1 class="w3layouts_head">PURECHECK REGISTER FORM</h1>
+				<div class="w3layouts_main_grid">
+					<form action="/pc_reg/" method="post" class="w3_form_post">
+						{% csrf_token %}
+						<div class="w3_agileits_main_grid w3l_main_grid">
+							<span class="agileits_grid">
+								<label>Name</label>
+								<input type="text" name="name" placeholder="Name" required="" autocomplete="off">
+							</span>
+						</div>
+						<div class="w3_agileits_main_grid w3l_main_grid">
+							<span class="agileits_grid">
+								<label>Email </label>
+								<input type="text" name="email" placeholder="Email" required="" autocomplete="off">
+							</span>
+						</div>
+						
+						<div class="w3_agileits_main_grid w3l_main_grid">
+							<span class="agileits_grid">
+								<label>Mobile Number </label>
+								{% comment %} <input type="text" name="mobile_number" placeholder="Mobile Number" required="" autocomplete="off"> {% endcomment %}
+								<input name="mobile_number" id="phone" type="text" value="" autocomplete="off" placeholder="Mobile Number"  required pattern="[6-9]{1}[0-9]{9}"
+                               title="Phone number must be 10 digits long and start with a number from 6 to 9">
+								</span>
+						</div>
+						<div class="w3_agileits_main_grid w3l_main_grid">
+							<span class="agileits_grid">
+								<label>Department</label>
+								<input type="text" name="department" placeholder="Phone Number"  value='Purecheck' readonly>
+								</span>
+						</div>
+						<center><div class="w3_main_grid">
+						<div class="w3_main_grid_right">
+							<a><input type="submit" value="REGISTER"><br></a>
+						</div>
+						</div></center>
+					</form>
+
+					<center><div class="w3_main_grid">
+						<div class="w3_main_grid_right">
+							<a href="/pc_login/"><p style="color:white;">Already Have an Account?</p><input type="submit" value="LOGIN"><br></a>
+						</div>
+					</div></center>
+				<center><div class="w3_main_grid">
+					<div class="w3_main_grid_right">
+						<a href="/"><input type="submit" value="BACK"><br></a>
+					</div>
+				</div></center>
+		</div>
+	</div>
+	</div>
+<!-- //footer -->
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordInput = document.querySelector('input[name="password"]');
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+</script>
+
+
+<script>
+	document.getElementById('phone').addEventListener('input', function (e) {
+		var phone = e.target.value;
+		var pattern = /^[6-9][0-9]{9}$/;
+	
+		if (!pattern.test(phone)) {
+			e.target.setCustomValidity("Please enter a valid phone number.");
+		} else {
+			e.target.setCustomValidity("");
+		}
+	});
+	
+	document.getElementById('phone').addEventListener('invalid', function (e) {
+		if (e.target.validity.patternMismatch) {
+			e.target.setCustomValidity("Please enter a valid phone number.");
+		}
+	});
+	</script>
+
+	
+</body>
+</html>

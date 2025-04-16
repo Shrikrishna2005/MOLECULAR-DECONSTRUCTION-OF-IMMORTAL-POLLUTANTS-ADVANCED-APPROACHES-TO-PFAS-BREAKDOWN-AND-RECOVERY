@@ -1,0 +1,299 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <base href="/static/fluroreclaim/fr_home/"
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Fluroreclaim Analyze</title>
+    <!-- google-fonts -->
+    <link
+        href="//fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Font-Awesome-Icons-CSS -->
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="assets/css/style-starter.css">
+</head>
+
+<body>
+    <script>
+        {% for message in messages %}
+            alert("{{ message }}");
+        {% endfor %}
+    </script>
+
+
+
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0">
+                <h1>
+                    <a class="navbar-brand" href="/fr_home/">
+                        {% comment %} <i class="fab fa-mastodon"></i> {% endcomment %}
+                        FLURORECLAIM<span></span>
+                    </a>
+                </h1>
+                <!-- if logo is image enable this   
+    <a class="navbar-brand" href="#index.html">
+        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    </a> -->
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/fr_home/">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/fr_req/">REQUIREMENTS </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/fr_analyze/">FLURORECLAIM ANALYZE<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/fr_report/">FLURORECLAIM REPORT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/fr_logout/">LOGOUT</a>
+                        </li>
+                    </ul>
+                </div>
+                    
+                <!-- //search button -->
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+
+    <!-- banner section -->
+    <section id="home" class="w3l-banner py-5">
+        <div class="banner-image">
+        </div>
+        <div class="banner-content">
+             <!-- banner section -->
+    <div class="slider">
+        <div class="slide current">
+            <div class="bg-layer">
+                <div class="container" style="margin-top:-3%;">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section" style="color:black;">FLURORECLAIM ANALYZE</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr STYLE=background-color:brown;>
+                                <th style="text-align:center;">PROJECT ID</th>
+                                    <th style="text-align:center;">PRODUCT</th>
+                                    <th style="text-align:center;">WEIGHT</th>
+                                    <th style="text-align:center;">PFAS %</th>
+                                    <th style="text-align:center;">FLUORINE FRACTION %</th>
+                                    <th style="text-align:center;">FLUORINE</th>
+                                    <th style="text-align:center;">MOLE OF C-F BOND</th>
+                                    <th style="text-align:center;">BOND DISSOCITION ENERGY</th>
+                                    <th style="text-align:center;">ANALYZE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if obj %}
+                            {% for i in obj %}
+                            {% if i.de_scan is True %}
+                                <tr style="background-color:white;">
+                                    <td style="text-align:center;">Project ID:{{i.project_id}}</td>
+                                    <td style="text-align:center;">{{i.product}}</td>
+                                    <td style="text-align:center;">{{i.weight}}g</td>
+                                    <td style="text-align:center;">{{i.pfas}}%</td>
+                                    <td style="text-align:center;">{{i.fluorine_fra}}%</td>
+                                    <td style="text-align:center;">{{i.fluorine_mg}}g</td>
+                                    <td style="text-align:center;">{{i.moles_cf_bonds}}g</td>
+                                    <td style="text-align:center;">{{i.energy_req}}kJ</td>
+                                    {% if i.fr_scan is False %}
+                                        <td style="text-align:center;"><a href='/fr_analyze_process/{{i.project_id}}/'>
+                                                    <button style="background-color:brown; border-color:black;" class="button">                                  
+                                                      <div class="text">
+                                                        ANALYZE
+                                                      </div>                                                    
+                                                    </button></a>
+                                        </td>
+                                    {% else %}
+                                        <td style="text-align:center; ">
+                                            <div class="text">ANALYZED</div>
+                                        </td>
+                                    {% endif %}
+                                {% endif %}                                              
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr style="background-color:white;">
+                                <td colspan=10 style="text-align:center;">No Data Found</td>
+                        {% endif %}
+                                        
+                         </tbody>  
+                     </table>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+         </div> 
+    </section>
+    <!-- //banner section -->
+
+    <!-- Js scripts -->
+
+    <!-- common jquery plugin -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- banner image moving effect -->
+    <script>
+        var lFollowX = 0,
+            lFollowY = 0,
+            x = 0,
+            y = 0,
+            friction = 1 / 30;
+
+        function animate() {
+            x += (lFollowX - x) * friction;
+            y += (lFollowY - y) * friction;
+
+            translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
+
+            $('.banner-image').css({
+                '-webit-transform': translate,
+                '-moz-transform': translate,
+                'transform': translate
+            });
+
+            window.requestAnimationFrame(animate);
+        }
+
+        $(window).on('mousemove click', function (e) {
+
+            var lMouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
+            var lMouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
+            lFollowX = (20 * lMouseX) / 100; // 100 : 12 = lMouxeX : lFollow
+            lFollowY = (10 * lMouseY) / 100;
+
+        });
+
+        animate();
+    </script>
+    <!-- //banner image moving effect -->
+
+    <!-- magnific popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+    </script>
+    <!-- //magnific popup -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="assets/js/theme-change.js"></script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- //bootstrap -->
+    <!-- //Js scripts -->
+</body>
+
+</html>

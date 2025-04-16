@@ -1,0 +1,314 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+{% load static %}
+<html lang="zxx">
+
+<head>
+	<base href="/static/purecheck/pc_home/">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Purecheck Home</title>
+	<!-- Template CSS -->
+	<link rel="stylesheet" href="assets/css/style-starter.css">
+	<!-- Template CSS -->
+	<link href="//fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700&display=swap" rel="stylesheet">
+	<!-- Template CSS -->
+</head>
+
+<body>
+	<script>
+		{% for message in messages %}
+			alert("{{message}}");
+		{% endfor %}
+	</script>
+	<!--header-->
+	<header id="site-header" class="fixed-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-dark stroke">
+				<h1> <a class="navbar-brand" href="/pc_home/">
+						<span ></span> <span class="sub-logo">PURECHECK</span>
+					</a></h1>
+				<!-- if logo is image enable this   
+        <a class="navbar-brand" href="#index.html">
+            <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+        </a> -->
+				<button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+					data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+					<span class="navbar-toggler-icon fa icon-close fa-times"></span>
+					</span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="/pc_home/">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/pc_req/">PURECHECK REQUIREMENTS</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="/pc_analyze/">PURECHECK ANALYZE <span class="sr-only">(current)</span></a>
+						</li>
+						
+						<li class="nav-item">
+							<a class="nav-link" href="/pc_report/">PURECHECK REPORT</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/pc_logout/">LOGOUT</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!--/header-->
+	<!-- main-slider -->
+	<section class="w3l-main-slider position-relative" id="home">
+        <div class="companies20-content">
+            <div class="item">
+                <li>
+                    <div class="slider-info banner-view bg bg2">
+                        <div class="banner-info">
+                            <div class="container">
+                                <div class="slider">
+                                    <div class="slide current">
+                                        <div class="bg-layer">
+                                            <div class="container" style="margin-top:-3%;">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-6 text-center mb-5">
+                                                        <h2 class="heading-section" style="color:white;">PURECHECK ANALYZE</h2>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-11">
+                                                        <div class="table-wrap" style="width: 100%; margin: 0 auto;">
+                                                            <table class="table" style="width: 100%;">
+                                                                <thead class="thead-primary">
+                                                                    <tr style="background-color:#f50537;">
+                                                                        <th style="text-align:center;">PROJECT ID</th>
+                                                                        <th style="text-align:center;">PRODUCT</th>
+                                                                        <th style="text-align:center;">WEIGHT</th>
+                                                                        <th style="text-align:center;">PFAS %</th>
+                                                                        <th style="text-align:center;">FLUORINE FRACTION %</th>
+                                                                        <th style="text-align:center;">FLUORINE</th>
+                                                                        <th style="text-align:center;">MOLE OF C-F BOND</th>
+                                                                        <th style="text-align:center;">BOND DISSOCIATION ENERGY</th>
+                                                                        <th style="text-align:center;">RECOVERY EFFICIENCY</th>
+                                                                        <th style="text-align:center;">RECOVERED FLUORINE</th>
+                                                                        <th style="text-align:center;">ACTION</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% if obj %}
+                                                                        {% for i in obj %}
+																		{% if i.fr_scan is True %}
+                                                                            <tr style="background-color:white;">
+                                                                                <td style="text-align:center;">Project ID:{{i.project_id}}</td>
+                                                                                <td style="text-align:center;">{{i.product}}</td>
+                                                                                <td style="text-align:center;">{{i.weight}}g</td>
+                                                                                <td style="text-align:center;">{{i.pfas}}%</td>
+                                                                                <td style="text-align:center;">{{i.fluorine_fra}}%</td>
+                                                                                <td style="text-align:center;">{{i.fluorine_mg}}g</td>
+                                                                                <td style="text-align:center;">{{i.moles_cf_bonds}}g</td>
+                                                                                <td style="text-align:center;">{{i.energy_req}}kJ</td>
+                                                                                <td style="text-align:center;">{{i.recovery_eff}}%</td>
+                                                                                <td style="text-align:center;">{{i.fr_recovered}}g</td>
+                                                                                {% if i.pc_scan is False %}
+                                                                                    <td style="text-align:center;"><a href="/pc_analyze_process/{{i.project_id}}/">
+                                                                                        <button style="background-color:#f50537; border-color:black;" class="button">
+                                                                                        <div class="text">
+                                                                                    ANALYZE</div>
+                                                                                    </button></a></td>
+                                                                                {% else %}
+                                                                                <td style="text-align:center;"><div class="text">ANALYZED</div></td>
+                                                                                {% endif %}
+                                                                            </tr>
+																		{% endif %}
+                                                                        {% endfor %}
+                                                                    {% else %}
+                                                                        <tr style="background-color:white;">
+                                                                            <td colspan="12" style="text-align:center;">No Data Found</td>
+                                                                        </tr>
+                                                                    {% endif %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </section>
+    
+ 
+</body>
+
+</html>
+
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+
+<!-- disable body scroll which navbar is in active -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('.popup-with-zoom-anim').magnificPopup({
+			type: 'inline',
+
+			fixedContentPos: false,
+			fixedBgPos: true,
+
+			overflowY: 'auto',
+
+			closeBtnInside: true,
+			preloader: false,
+
+			midClick: true,
+			removalDelay: 300,
+			mainClass: 'my-mfp-zoom-in'
+		});
+
+		$('.popup-with-move-anim').magnificPopup({
+			type: 'inline',
+
+			fixedContentPos: false,
+			fixedBgPos: true,
+
+			overflowY: 'auto',
+
+			closeBtnInside: true,
+			preloader: false,
+
+			midClick: true,
+			removalDelay: 300,
+			mainClass: 'my-mfp-slide-bottom'
+		});
+	});
+</script>
+<!--//-->
+<!-- stats -->
+<script src="assets/js/jquery.waypoints.min.js"></script>
+<script src="assets/js/jquery.countup.js"></script>
+<script>
+	$('.counter').countUp();
+</script>
+<!-- //stats -->
+<script src="assets/js/owl.carousel.js"></script>
+<!-- script for banner slider-->
+<script>
+	$(document).ready(function () {
+		$('.owl-one').owlCarousel({
+			loop: true,
+			margin: 0,
+			nav: false,
+			responsiveClass: true,
+			autoplay: false,
+			autoplayTimeout: 5000,
+			autoplaySpeed: 1000,
+			autoplayHoverPause: false,
+			responsive: {
+				0: {
+					items: 1,
+					nav: false
+				},
+				480: {
+					items: 1,
+					nav: false
+				},
+				667: {
+					items: 1,
+					nav: true
+				},
+				1000: {
+					items: 1,
+					nav: true
+				}
+			}
+		})
+	})
+</script>
+<!-- //script -->
+<!-- script for owlcarousel -->
+<script>
+	$(document).ready(function () {
+		$('.owl-testimonial').owlCarousel({
+			loop: true,
+			margin: 0,
+			nav: false,
+			responsiveClass: true,
+			autoplay: false,
+			autoplayTimeout: 5000,
+			autoplaySpeed: 1000,
+			autoplayHoverPause: false,
+			responsive: {
+				0: {
+					items: 1,
+					nav: false
+				},
+				480: {
+					items: 1,
+					nav: false
+				},
+				667: {
+					items: 1,
+					nav: false
+				},
+				1000: {
+					items: 1,
+					nav: false
+				}
+			}
+		})
+	})
+</script>
+<!-- disable body scroll which navbar is in active -->
+<script>
+  $(function () {
+    $('.navbar-toggler').click(function () {
+      $('body').toggleClass('noscroll');
+    })
+  });
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+<!--/MENU-JS-->
+<script>
+  $(window).on("scroll", function () {
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 80) {
+      $("#site-header").addClass("nav-fixed");
+    } else {
+      $("#site-header").removeClass("nav-fixed");
+    }
+  });
+
+  //Main navigation Active Class Add Remove
+  $(".navbar-toggler").on("click", function () {
+    $("header").toggleClass("active");
+  });
+  $(document).on("ready", function () {
+    if ($(window).width() > 991) {
+      $("header").removeClass("active");
+    }
+    $(window).on("resize", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+    });
+  });
+</script>
+<!--//MENU-JS-->
+<script src="assets/js/bootstrap.min.js"></script>

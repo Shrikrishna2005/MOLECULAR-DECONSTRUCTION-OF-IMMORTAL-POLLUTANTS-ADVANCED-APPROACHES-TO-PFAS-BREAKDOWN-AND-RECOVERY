@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <base href="/static/decompoenergy/de_home/"
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DecompoEnergy Reports</title>
+    <!-- Google fonts -->
+    <link href=//fonts.googleapis.com/css2?family=Londrina+Outline&display=swap" rel="stylesheet">
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="assets/css/style-starter.css">
+</head>
+
+<body>
+    <script>
+        {% for message in messages %}
+            alert('{{message}}');
+        {% endfor %}
+    </script>
+
+    <!-- header -->
+    <header id="site-header" class="fixed-top" style="margin-top:0px;">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="/de_home/">
+                    <i></i> DecompoEnergy </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link"  href="/de_home/">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/de_req/">REQUIREMENTS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/de_analyze/">DECOMPOENERGY ANALYZE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/de_report/">DECOMPOENERGY REPORT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/de_logout/">LOGOUT</a>
+                        </li>
+                    </ul>
+                </div>
+                {% comment %} <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme --> {% endcomment %}
+            </nav>
+        </div>
+    </header>
+    <!-- //header -->
+
+
+
+    <!-- banner section -->
+    <div class="slider">
+        <div class="slide current">
+            <div class="bg-layer">
+                <div class="container" style="margin-top:18%;">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section" style="color:white;">DECOMPOENERGY REPORT</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr STYLE=background-color:#f50537;>
+                                <th style="text-align:center;">PROJECT ID</th>
+                                    <th style="text-align:center;">PRODUCT</th>
+                                    <th style="text-align:center;">WEIGHT</th>
+                                    <th style="text-align:center;">PFAS %</th>
+                                    <th style="text-align:center;">FLUORINE FRACTION %</th>
+                                    <th style="text-align:center;">FLUORINE</th>
+                                    <th style="text-align:center;">MOLE OF C-F BOND</th>
+                                    <th style="text-align:center;">BOND DISSOCITION ENERGY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if obj %}
+                            {% for i in obj %}
+                                <tr style="background-color:white;">
+                                    <td style="text-align:center;">Project ID:{{i.project_id}}</td>
+                                    <td style="text-align:center;">{{i.product}}</td>
+                                    <td style="text-align:center;">{{i.weight}}g</td>
+                                    <td style="text-align:center;">{{i.pfas}}%</td>
+                                    <td style="text-align:center;">{{i.fluorine_fra}}%</td>
+                                    <td style="text-align:center;">{{i.fluorine_mg}}g</td>
+                                    <td style="text-align:center;">{{i.moles_cf_bonds}}g</td>
+                                    <td style="text-align:center;">{{i.energy_req}}kJ</td>                                              
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr style="background-color:white;">
+                                <td colspan=10 style="text-align:center;">No Data Found</td>
+                        {% endif %}
+                                        
+                         </tbody>  
+                     </table>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+
+
+ 
+
+     <!-- Js scripts -->
+    {% comment %} <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button> {% endcomment %}
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- banner slider -->
+    <script>
+        const slides = document.querySelectorAll(".slide");
+        const nextButton = document.getElementById("next");
+        const prevButton = document.getElementById("prev");
+        const auto = true;
+        const intervalTime = 5000;
+        let slideInterval;
+
+        const nextSlide = () => {
+            const current = document.querySelector(".current");
+            current.classList.remove("current");
+            if (current.nextElementSibling) {
+                current.nextElementSibling.classList.add("current");
+            } else {
+                slides[0].classList.add("current");
+            }
+        };
+
+        const prevSlide = () => {
+            const current = document.querySelector(".current");
+            current.classList.remove("current");
+            if (current.previousElementSibling) {
+                current.previousElementSibling.classList.add("current");
+            } else {
+                slides[slides.length - 1].classList.add("current");
+            }
+        };
+
+        nextButton.addEventListener("click", () => {
+            nextSlide();
+            if (auto) {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, intervalTime);
+            }
+        });
+        prevButton.addEventListener("click", () => {
+            prevSlide();
+            if (auto) {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, intervalTime);
+            }
+        });
+
+        if (auto) {
+            slideInterval = setInterval(nextSlide, intervalTime);
+        }
+    </script>
+    <!-- //banner slider -->
+
+    <!-- video popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+    </script>
+    <!-- //video popup -->
+    
+    <!-- theme switch js (light and dark)-->
+    <script src="assets/js/theme-change.js"></script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- //bootstrap -->
+    <!-- //Js scripts -->
+</body>
+
+</html>

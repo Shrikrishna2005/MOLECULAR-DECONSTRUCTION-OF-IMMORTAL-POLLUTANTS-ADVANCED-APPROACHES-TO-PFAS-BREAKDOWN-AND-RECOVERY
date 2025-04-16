@@ -1,0 +1,295 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+	<base href="/static/admins/adminhome/">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Decompoenergy Approval</title>
+
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&display=swap"
+        rel="stylesheet">
+    <!-- //google-fonts -->
+
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="assets/css/style-liberty.css">
+
+
+
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{% static 'admins/fluroscan_approve/css/style.css' %}">
+
+	</head>
+	<body style="background: linear-gradient(rgba(103, 58, 183, 0.8), rgba(103, 58, 183, 0.8)), 
+	url('{% static "admins/adminhome/assets/images/banner1.jpg" %}');
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center 20%; min-height: 100vh;">
+		<script>
+			{% for message in messages %}
+				alert('{{ message }}');
+			{% endfor %}
+		</script>
+	
+	<!--header-->
+	<header id="site-header" class="fixed-top" style=background-color:white;>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg stroke">
+				<h1>
+					<a class="navbar-brand" href="/admins_home/">
+						<span class="fa fa-lightbulb"></span> ADMIN
+					</a>
+				</h1>
+				<!-- if logo is image enable this   
+				<a class="navbar-brand" href="#index.html">
+					<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+				</a> -->
+				<button class="navbar-toggler collapsed bg-gradient" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+					<span class="navbar-toggler-icon fa icon-close fa-times"></span>
+				</button>
+	
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav ms-lg-auto">
+						<li class="nav-item ">
+							<a class="nav-link" href="/admins_home/">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item dropdown active">
+							<a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MANAGE LOG</a>
+							<ul class="dropdown-menu" aria-labelledby="reportsDropdown">
+								<li><a class="dropdown-item" href="/fluroscan_accept/" >FLUORSCAN</a></li>
+								<li><a class="dropdown-item" href="/de_accept/" style="color:#673ab7">DECOMPOENERGY</a></li>
+								<li><a class="dropdown-item" href="/fr_accept/">FLURORECLAIM</a></li>
+								<li><a class="dropdown-item" href="/pc_accept/">PURECHECK</a></li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/requirements/">REQUIREMENTS</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">REPORTS</a>
+							<ul class="dropdown-menu" aria-labelledby="reportsDropdown">
+								<li><a class="dropdown-item" href="/fs_rep/">FLUORSCAN</a></li>
+								<li><a class="dropdown-item" href="/de_rep/">DECOMPOENERGY</a></li>
+								<li><a class="dropdown-item" href="/fr_rep/">FLURORECLAIM</a></li>
+								<li><a class="dropdown-item" href="/pc_rep/">PURECHECK</a></li>
+							</ul>
+						</li>
+						
+						<li class="nav-item">
+							<a class="nav-link" href="/status/">STATUS</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admins_logout/">LOGOUT</a>
+						</li>
+					</ul>
+				</div>
+	
+				<!-- toggle switch for light and dark theme -->
+				
+				<!-- //toggle switch for light and dark theme -->
+			</nav>
+		</div>
+	</header>
+	<!--//header-->
+
+		<section class="ftco-section" >
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-6 text-center mb-5">
+						<h2 class="heading-section" style=color:white;>DECOMPOENERGY RECORD</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+							<thead class="thead-primary">
+						 		<tr STYLE=background-color:#00c16e;>
+						    		<th style="text-align:center;">ID</th>
+									<th style="text-align:center;">NAME</th>
+						    		<th style="text-align:center;">EMAIL</th>
+						    		<th style="text-align:center;">MOBILE NUMBER</th>
+									<th style="text-align:center;">DEPARTMENT</th>
+									<th colspan=2 style="text-align:center;">Action</th>
+						    	</tr>
+							</thead>
+						<tbody>
+						{% if data %}
+						{% for i in data %}
+						    <tr>
+						      	<td style="text-align:center;">{{i.id}}</td>
+						      	<td style="text-align:center;">{{i.name}}</td>
+							  	<td style="text-align:center;">{{i.email}}</td>
+						     	 <td style="text-align:center;">{{i.mobile_no}}</td>
+							  	<td style="text-align:center;">{{i.department}}</td>
+							{% if i.accept is False and i.reject is False %}
+							  	<td><button style="text-align:center; background-color:green; cursor:pointer;">
+									<a href='/accept/{{i.id}}/' style="color:white; text-decoration:none;">Accept</a></button>
+								</td>
+								<td><button style="text-align:center; background-color:red; cursor:pointer;">
+									<a href='/reject/{{i.id}}/' style="color:white; text-decoration:none;">Reject</a></button>
+								</td>
+							{% elif i.accept is True and i.reject is False %}
+								<td style="text-align:center; ">
+									<a style="color:green; text-decoration:none;">ACCEPTED</a>
+								</td>
+								<td style="text-align:center;">
+									<a style="color:orange; text-decoration:none;">NO ACTION</a>
+								</td>
+							{% else %}
+								<td style="text-align:center; ">
+									<a style="color:orange; text-decoration:none;">NO ACTION</a>
+								</td>
+								<td style="text-align:center;">
+									<a style="color:red; text-decoration:none;">REJECTED</a>
+								</style=>
+								</td>
+							{% endif %}	
+						    </tr>
+						{% endfor %}
+						{% else %}
+						<tr style="background-color:white;">
+							<td colspan=13 style="text-align:center">No Data</td>				
+						</tr>
+						{% endif %}
+						</tbody>  
+						</table>
+					</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+
+
+
+  
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- //move top -->
+
+<!-- common jquery plugin -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<!-- //common jquery plugin -->
+
+<!-- theme switch js (light and dark)-->
+<script src="assets/js/theme-change.js"></script>
+<!-- //theme switch js (light and dark)-->
+
+<!--/stats-number-counter-->
+<script src="assets/js/jquery.waypoints.min.js"></script>
+<script src="assets/js/jquery.countup.js"></script>
+<script>
+    $('.counter').countUp();
+
+</script>
+<!--//stats-number-counter-->
+
+<!--/owlcarousel-->
+<script src="assets/js/owl.carousel.js"></script>
+<!-- //tesimonials-->
+<script>
+    $(document).ready(function() {
+        $("#owl-demo1").owlCarousel({
+            loop: true,
+            nav: false,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                736: {
+                    items: 1,
+                    nav: false
+                }
+            }
+        })
+    })
+
+</script>
+<!-- //tesimonials-->
+
+<!-- MENU-JS -->
+<script>
+    $(window).on("scroll", function () {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+</script>
+<!-- //MENU-JS -->
+
+<!-- disable body scroll which navbar is in active -->
+<script>
+    $(function () {
+        $('.navbar-toggler').click(function () {
+            $('body').toggleClass('noscroll');
+        })
+    });
+</script>
+<!-- //disable body scroll which navbar is in active -->
+
+
+
+
+
+<!--bootstrap-->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- //bootstrap-->
+<!-- //Js scripts -->
+	</body>
+</html>
+
